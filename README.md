@@ -14,4 +14,4 @@ Appointments,
 
 Follows with Jasper Reports,
 
-Used EJB,JPA,GlassFish Server,Primefaces,Jasper reports
+Used EJB,JPA,GlassFish Server,CSS,Primefaces,Jasper reports
