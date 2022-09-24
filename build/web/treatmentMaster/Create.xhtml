@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTreatmentMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:fieldset legend="Add New Treatment">
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/treatmentMaster/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/treatmentMaster/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/treatmentMaster/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/treatmentMaster/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink  action="#{treatmentMasterController.create}" >
+                <p:button styleClass="ui-button-success"  value="#{bundle.CreateTreatmentMasterSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;                  
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{treatmentMasterController.prepareList}" value="#{bundle.CreateTreatmentMasterShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+     
+    <p:tab title="Add Treatment">                
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+                   
+                    <p:outputLabel value="#{bundle.CreateTreatmentMasterLabel_dateTime}" for="dateTime" />
+                    <p:datePicker id="dateTime" value="#{treatmentMasterController.selected.dateTime}" title="#{bundle.CreateTreatmentMasterTitle_dateTime}" >
+                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                    </p:datePicker>
+                    <p:outputLabel value="#{bundle.CreateTreatmentMasterLabel_otherTreatment}" for="otherTreatment" />
+                    <p:inputText id="otherTreatment" value="#{treatmentMasterController.selected.otherTreatment}" title="#{bundle.CreateTreatmentMasterTitle_otherTreatment}" />
+                    <p:outputLabel value="#{bundle.CreateTreatmentMasterLabel_description}" for="description" />
+                    <p:inputText id="description" value="#{treatmentMasterController.selected.description}" title="#{bundle.CreateTreatmentMasterTitle_description}" />
+                    <p:outputLabel value="#{bundle.CreateTreatmentMasterLabel_patientId}" for="patientId" />
+                    <p:selectOneMenu id="patientId" value="#{treatmentMasterController.selected.patientId}" title="#{bundle.CreateTreatmentMasterTitle_patientId}" >
+                        <f:selectItems value="#{patientMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateTreatmentMasterLabel_toothId}" for="toothId" />
+                    <p:selectOneMenu id="toothId" value="#{treatmentMasterController.selected.toothId}" title="#{bundle.CreateTreatmentMasterTitle_toothId}" >
+                        <f:selectItems value="#{toothMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateTreatmentMasterLabel_treatementId}" for="treatementId" />
+                    <p:selectOneMenu id="treatementId" value="#{treatmentMasterController.selected.treatementId}" title="#{bundle.CreateTreatmentMasterTitle_treatementId}" >
+                        <f:selectItems value="#{treatmentTransController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                </p:tab>
+            
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>

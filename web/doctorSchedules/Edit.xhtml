@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDoctorSchedulesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+      
+        <h:form>
+        <p:breadCrumb>
+            <p:menuitem value="Home" outcome="/index"/>
+            <p:menuitem value="List" outcome="/doctorSchedules/List"/>
+            <p:menuitem value="Create" disabled="true" outcome="/doctorSchedules/Create"/>
+            <p:menuitem value="Edit" disabled="true" outcome="/doctorSchedules/Edit"/>
+            <p:menuitem value="View" outcome="/doctorSchedules/View"/>
+            
+        </p:breadCrumb>
+        </h:form>
+            <h:form>
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+  
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_scheduleDate}" for="scheduleDate" />
+                    <p:inputText id="scheduleDate" value="#{doctorSchedulesController.selected.scheduleDate}" title="#{bundle.EditDoctorSchedulesTitle_scheduleDate}" />
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_scheduleDay}" for="scheduleDay" />
+                    <p:inputText id="scheduleDay" value="#{doctorSchedulesController.selected.scheduleDay}" title="#{bundle.EditDoctorSchedulesTitle_scheduleDay}" />
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_startTime}" for="startTime" />
+                    <p:inputText id="startTime" value="#{doctorSchedulesController.selected.startTime}" title="#{bundle.EditDoctorSchedulesTitle_startTime}" />
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_endTime}" for="endTime" />
+                    <p:inputText id="endTime" value="#{doctorSchedulesController.selected.endTime}" title="#{bundle.EditDoctorSchedulesTitle_endTime}" />
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_scheduleStatus}" for="scheduleStatus" />
+                    <p:inputText id="scheduleStatus" value="#{doctorSchedulesController.selected.scheduleStatus}" title="#{bundle.EditDoctorSchedulesTitle_scheduleStatus}" />
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_doctorID}" for="doctorID" />
+                    <p:inputText id="doctorID" value="#{doctorSchedulesController.selected.doctorID}" title="#{bundle.EditDoctorSchedulesTitle_doctorID}" />
+                    <p:outputLabel value="#{bundle.EditDoctorSchedulesLabel_doctorMaster}" for="doctorMaster" />
+                    <p:selectOneMenu id="doctorMaster" value="#{doctorSchedulesController.selected.doctorMaster}" title="#{bundle.EditDoctorSchedulesTitle_doctorMaster}" required="true" requiredMessage="#{bundle.EditDoctorSchedulesRequiredMessage_doctorMaster}">
+                        <f:selectItems value="#{doctorMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+   
+                </p:panelGrid>
+                <h:commandLink  action="#{doctorSchedulesController.update}" >
+                <p:button styleClass="ui-button-success" value="#{bundle.EditDoctorSchedulesSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;  
+                <h:link outcome="View">
+                <p:button styleClass="ui-button-primary"  value="#{bundle.EditDoctorSchedulesViewLink}" />
+                </h:link>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
+</html>

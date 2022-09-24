@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAppointmentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:fieldset legend="Appointments">
+
+    <p:tabMenu activeIndex="#{param.i}">
+        <p:menuitem value="Appointments" outcome="/appointment/List" icon="pi pi-fw pi-book">
+            <f:param name="i" value="0"/>
+        </p:menuitem>        
+        <p:menuitem value="Appointment Reports" outcome="/report/appointmentReports" icon="pi pi-fw pi-book">
+            <f:param name="i" value="1"/>
+        </p:menuitem>
+    </p:tabMenu>                   
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/appointment/List"/>
+                <p:menuitem value="Create" outcome="/appointment/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/appointment/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/appointment/View"/>    
+                </p:breadCrumb>                
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink action="#{appointmentController.prepareCreate}">
+                <p:commandButton value="New" icon="pi pi-plus"
+                    styleClass="ui-button-success" style="margin-right: .5rem">
+                   
+                </p:commandButton>
+                </h:commandLink>
+            </p:toolbarGroup>
+        </p:toolbar>      
+
+                <p:dataTable value="#{appointmentController.items}" var="item"  sortBy="#{item.patientId.name}"
+                             emptyMessage="No Appointment found with given criteria"
+                             paginator="true" rows="4" stripedRows="true"  size="small"
+                             paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} ">
+
+            <p:headerRow field="patientId.name" class="pi pi-chevron-circle-down"
+                         expandable="true"
+                         expanded="#{item.patientId.name != 'Stephen Shaw'}">
+                <p:column colspan="6">
+                    <div class="inline-flex align-items-center" style="vertical-align: middle">
+                        <h:outputText styleClass="ml-2" value="#{item.patientId.name}"/>
+                    </div>
+                </p:column>
+            </p:headerRow>
+                    
+                    
+                    <p:column headerText="#{bundle.ListAppointmentTitle_dateOfAppointment}"   >
+                <f:facet name="filter">
+                    <p:datePicker pattern="dd-MMM-yyyy"  ></p:datePicker>
+                </f:facet>             
+                            <h:outputText value="#{item.dateOfAppointment}">
+                                <f:convertDateTime pattern="dd-MMM-yyyy" />
+                            </h:outputText>
+                        </p:column>
+                    
+                        <p:column filterBy="#{item.patientId.name}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_patient}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.patientId.name}"/>
+                        </p:column>  
+                        <p:column filterBy="#{item.doctorId.name}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_doctor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doctorId.name}"/>
+                        </p:column>                    
+                        
+                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_complaint}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.complaint}"/>
+                        </p:column>
+                        <p:column field="status" filterBy="#{item.appointmentStatus}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_appointmentStatus}"/>
+                            </f:facet>
+                            <h:outputText styleClass="product-badge status-#{item.appointmentStatus}" value="#{item.appointmentStatus}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandLink action="#{appointmentController.prepareEdit}" >
+                            <p:button icon="pi pi-eye" styleClass="rounded-button ui-button-warning"/>
+                            </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <h:commandLink action="#{appointmentController.destroy}">
+                            <p:button icon="pi pi-trash" styleClass="rounded-button ui-button-danger"  />
+                            </h:commandLink>                          
+                        </p:column>                      
+                    </p:dataTable>
+                    
+ 
+                </p:fieldset>
+            </h:form>
+       
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2022-08-09T18:04:51 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="appointments" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba50f8f8-b260-42b5-9d9f-d3cf9aeca96d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ClinicSystemDS"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="Title" class="java.lang.String"/>
+	<parameter name="AppointmentDate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+ ap.DateOfAppointment,st.time,pm.Name as PatientName
+ ,pm.Mobile,dm.Name as DoctorName from Appointment ap
+inner join PatientMaster pm on pm.PatientId = ap.PatientId
+inner join DoctorMaster dm on ap.DoctorId = dm.DoctorId
+inner join ScheduleTiming st on st.TimeOfAppointment = ap.TimeOfAppointment
+WHERE ap.DateOfAppointment  >= $P{AppointmentDate} 
+GROUP By st.Time,pm.Name,pm.Mobile,dm.Name,ap.DateOfAppointment
+ORDER BY dm.Name]]>
+	</queryString>
+	<field name="DateOfAppointment" class="java.lang.String"/>
+	<field name="time" class="java.lang.String"/>
+	<field name="PatientName" class="java.lang.String"/>
+	<field name="Mobile" class="java.lang.String"/>
+	<field name="DoctorName" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{DoctorName}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement x="0" y="11" width="179" height="29" uuid="f3a0b955-c8c8-4489-b953-74a3a955f6a0"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DoctorName}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="10">
+				<line>
+					<reportElement x="1" y="4" width="552" height="2" uuid="c936bce7-5385-4ed1-a657-da82682d5c8c">
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<textField>
+				<reportElement x="189" y="10" width="170" height="43" uuid="355add4e-37e3-4407-80bd-14e10cb680fd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Title}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="0" y="0" width="186" height="84" uuid="18808a71-fcf7-4c71-b58c-9c0f415ccd2d"/>
+				<staticText>
+					<reportElement x="0" y="14" width="186" height="14" uuid="d45dde62-8a3f-4815-8806-371505ad14a0">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ALPHA DENTAL CLINICS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="28" width="186" height="14" uuid="c079c30d-2459-47eb-8b64-6b7ea0282340">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PO : NANDIKKARA , THRISSUR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="42" width="186" height="14" uuid="ead0bc92-3a9d-4fae-8a2c-5d57f6515e0a">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[KERALA   -  680301]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="56" width="150" height="14" uuid="343f30f7-a5d4-4c27-81c1-9d74c7c2fddd">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[0480 2753249]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="70" width="150" height="14" uuid="7290d854-d6ee-4527-a53a-461b0c4b4536">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MOB : +91 9496387054]]></text>
+				</staticText>
+			</frame>
+			<textField>
+				<reportElement x="359" y="68" width="193" height="16" forecolor="#000000" uuid="8eba30ad-e0c6-4cd2-be66-16e74cb60550"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DATE :"+$F{DateOfAppointment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="-1" width="552" height="2" uuid="7a826164-346e-446d-a0f3-201b83c7cd90">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="1" y="21" width="552" height="2" uuid="393f745a-091f-49f3-8915-158f1b493f67">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="0" width="100" height="20" uuid="c4afa78f-d95e-4bf5-a9e3-fb56034d31aa"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patient]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="0" width="100" height="20" uuid="be54beff-4239-4757-b926-7007142bef16"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mobile]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="100" height="20" uuid="d2a7e41c-d293-4fe1-aa79-4eb0d4fb02e4"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="21" width="552" height="2" uuid="f0fde253-3c5d-4323-b1c5-8adebbc93287">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="80" y="0" width="70" height="20" uuid="6b780381-93ff-4059-bf45-d369f8fc0001"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sl No.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="150" y="10" width="100" height="13" uuid="6697dc60-ec4e-4851-b1fa-e9f4584cabaa"/>
+				<textFieldExpression><![CDATA[$F{PatientName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="10" width="100" height="13" uuid="1ceed649-171b-4728-86c2-cf30ba898c0f"/>
+				<textFieldExpression><![CDATA[$F{Mobile}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="10" width="100" height="13" uuid="e1fda520-10c0-44a3-8477-1bbf9872c2f8"/>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="10" width="70" height="13" uuid="fe7e5bf4-b68e-4d1e-8953-61c556a6fc43"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

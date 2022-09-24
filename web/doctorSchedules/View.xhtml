@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDoctorSchedulesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+    <h:form>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/doctorSchedules/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/doctorSchedules/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/doctorSchedules/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/doctorSchedules/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+            </p:toolbarGroup>
+
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+              
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_scheduleId}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.scheduleId}" title="#{bundle.ViewDoctorSchedulesTitle_scheduleId}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_scheduleDate}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.scheduleDate}" title="#{bundle.ViewDoctorSchedulesTitle_scheduleDate}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_scheduleDay}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.scheduleDay}" title="#{bundle.ViewDoctorSchedulesTitle_scheduleDay}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_startTime}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.startTime}" title="#{bundle.ViewDoctorSchedulesTitle_startTime}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_endTime}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.endTime}" title="#{bundle.ViewDoctorSchedulesTitle_endTime}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_scheduleStatus}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.scheduleStatus}" title="#{bundle.ViewDoctorSchedulesTitle_scheduleStatus}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_doctorID}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.doctorID}" title="#{bundle.ViewDoctorSchedulesTitle_doctorID}"/>
+                    <h:outputText value="#{bundle.ViewDoctorSchedulesLabel_doctorMaster}"/>
+                    <h:outputText value="#{doctorSchedulesController.selected.doctorMaster}" title="#{bundle.ViewDoctorSchedulesTitle_doctorMaster}"/>
+    </p:panelGrid>
+                <h:commandLink  action="#{doctorSchedulesController.prepareList}" >
+                <p:button styleClass="ui-button-success" value="#{bundle.ViewDoctorSchedulesShowAllLink}" />
+                </h:commandLink>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

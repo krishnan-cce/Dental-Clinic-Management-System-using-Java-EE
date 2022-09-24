@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDoctorMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+    <h:form>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/doctorMaster/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/doctorMaster/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/doctorMaster/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/doctorMaster/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+            </p:toolbarGroup>
+
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_name}" for="name" />
+                    <p:inputText id="name" value="#{doctorMasterController.selected.name}" title="#{bundle.EditDoctorMasterTitle_name}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_gender}" for="gender" />
+                    <p:inputText id="gender" value="#{doctorMasterController.selected.gender}" title="#{bundle.EditDoctorMasterTitle_gender}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_address}" for="address" />
+                    <p:inputText id="address" value="#{doctorMasterController.selected.address}" title="#{bundle.EditDoctorMasterTitle_address}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_pinCode}" for="pinCode" />
+                    <p:inputText id="pinCode" value="#{doctorMasterController.selected.pinCode}" title="#{bundle.EditDoctorMasterTitle_pinCode}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_email}" for="email" />
+                    <p:inputText id="email" value="#{doctorMasterController.selected.email}" title="#{bundle.EditDoctorMasterTitle_email}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_mobile}" for="mobile" />
+                    <p:inputText id="mobile" value="#{doctorMasterController.selected.mobile}" title="#{bundle.EditDoctorMasterTitle_mobile}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_telephone}" for="telephone" />
+                    <p:inputText id="telephone" value="#{doctorMasterController.selected.telephone}" title="#{bundle.EditDoctorMasterTitle_telephone}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_birthDate}" for="birthDate" />
+                    <p:datePicker id="birthDate" value="#{doctorMasterController.selected.birthDate}" title="#{bundle.EditDoctorMasterTitle_birthDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:datePicker>
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_joiningDate}" for="joiningDate" />
+                    <p:datePicker id="joiningDate" value="#{doctorMasterController.selected.joiningDate}" title="#{bundle.EditDoctorMasterTitle_joiningDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    </p:datePicker>
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_qualification}" for="qualification" />
+                    <p:inputText id="qualification" value="#{doctorMasterController.selected.qualification}" title="#{bundle.EditDoctorMasterTitle_qualification}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_timings}" for="timings" />
+                    <p:inputText id="timings" value="#{doctorMasterController.selected.timings}" title="#{bundle.EditDoctorMasterTitle_timings}" />
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_districtId}" for="districtId" />
+                    <p:selectOneMenu id="districtId" value="#{doctorMasterController.selected.districtId}" title="#{bundle.EditDoctorMasterTitle_districtId}" >
+                        <f:selectItems value="#{districtMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_specializationId}" for="specializationId" />
+                    <p:selectOneMenu id="specializationId" value="#{doctorMasterController.selected.specializationId}" title="#{bundle.EditDoctorMasterTitle_specializationId}" >
+                        <f:selectItems value="#{specializationsController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.EditDoctorMasterLabel_stateId}" for="stateId" />
+                    <p:selectOneMenu id="stateId" value="#{doctorMasterController.selected.stateId}" title="#{bundle.EditDoctorMasterTitle_stateId}" >
+                        <f:selectItems value="#{stateMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+    </p:panelGrid>
+                <h:commandLink  action="#{doctorMasterController.update}" >
+                <p:button styleClass="ui-button-success" value="#{bundle.EditDoctorMasterSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;  
+                <h:link outcome="View">
+                <p:button styleClass="ui-button-primary"  value="#{bundle.EditDoctorMasterViewLink}" />
+                </h:link>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

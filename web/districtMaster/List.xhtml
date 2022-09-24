@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDistrictMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                
+                   <p:fieldset legend="District">
+                    <ui:decorate template="/Tabmenu.xhtml" />
+                    
+          
+        <p:toolbar>
+            <p:toolbarGroup>
+                <h:commandLink action="#{districtMasterController.prepareCreate}">
+                <p:commandButton value="New" icon="pi pi-plus" 
+                    styleClass="ui-button-success" style="margin-right: .5rem">
+                  
+                </p:commandButton>
+                </h:commandLink>
+            </p:toolbarGroup>
+        </p:toolbar>                   
+  
+                    
+
+                    <p:dataTable value="#{districtMasterController.items}" var="item"  paginator="true" rows="7"  size="small" stripedRows="true"
+                                  paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} ">
+                  
+
+                        <p:column  filterBy="#{item.districtId}" filterMatchMode="startsWith" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDistrictMasterTitle_districtId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.districtId}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.district}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDistrictMasterTitle_district}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.district}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandLink action="#{districtMasterController.prepareEdit}" >
+                            <p:button icon="pi pi-eye" styleClass="rounded-button ui-button-warning"/>
+                            </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <h:commandLink action="#{districtMasterController.destroy}">
+                            <p:button icon="pi pi-times" styleClass="rounded-button ui-button-danger" />
+                            </h:commandLink>
+                        </p:column>                        
+                    </p:dataTable>
+                    </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

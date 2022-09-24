@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="sidebar.css"/>
+        
+    </h:head>
+    <h:body>
+
+                <h:form>
+                        
+   <div class="sidebar">
+     <div class="logo_content">
+       <div class="logo">
+         <div class="logo_name">Dental Clinic</div>
+       </div>
+       <i class="pi pi-align-justify "></i>
+     </div>
+     <ul class="nav_list">
+       <li>
+        <h:link outcome="/appointment/List">
+         <i class="pi pi-calendar "></i>
+         <span class="links_name">Appointments</span>
+        </h:link>
+        <span class="tooltip">Appointments</span>
+      </li>
+       <li>
+        <h:link outcome="/doctorMaster/List">
+         <i class="pi pi-user-plus "></i>
+         <span class="links_name">Doctors</span>
+        </h:link>
+        <span class="tooltip">Doctors</span>
+      </li>
+      <li>
+        <h:link outcome="/patientMaster/List">
+         <i class="pi pi-users "></i>
+         <span class="links_name">Patients</span>
+        </h:link>
+        <span class="tooltip">Patients</span>
+      </li>
+      <li>
+        <h:link outcome="/reportMaster/List">
+         <i class="pi pi-folder-open "></i>
+         <span class="links_name">Reports</span>
+        </h:link>
+        <span class="tooltip">Reports</span>
+      </li>  
+      <li>
+        <h:link outcome="/treatmentMaster/List">
+         <i class="pi pi-microsoft "></i>
+         <span class="links_name">Treatment Master</span>
+        </h:link>
+        <span class="tooltip">Treatment Master</span>
+      </li>
+      <li>
+        <h:link outcome="/treatmentTrans/List">
+         <i class="pi pi-cog "></i>
+         <span class="links_name">Others</span>
+        </h:link>
+        <span class="tooltip">Others</span>
+      </li>
+        
+     </ul>
+   </div>
+                </h:form>
+        <h:outputScript library="js" name="sidebar.js" />
+    </h:body>
+    
+</html>
+

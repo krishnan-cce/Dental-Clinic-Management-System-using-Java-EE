@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDoctorSchedulesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/doctorSchedules/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/doctorSchedules/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/doctorSchedules/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/doctorSchedules/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink  action="#{doctorSchedulesController.create}" >
+                <p:button styleClass="ui-button-success"  value="#{bundle.CreateDoctorSchedulesSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;                  
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{doctorSchedulesController.prepareList}" value="#{bundle.CreateDoctorSchedulesShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+        
+              
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+                    <p:outputLabel value="#{bundle.CreateDoctorSchedulesLabel_scheduleDate}" />
+                    <p:datePicker  pattern="dd-MMM-yyyy" value="#{doctorSchedulesController.selected.scheduleDate}" title="#{bundle.CreateDoctorSchedulesTitle_scheduleDate}">
+                    </p:datePicker>
+                    
+             
+                    <p:outputLabel title="#{bundle.CreateDoctorSchedulesTitle_scheduleDay}" value="#{bundle.CreateDoctorSchedulesLabel_scheduleDay}" for="scheduleDay" />
+                    <p:selectOneMenu id="scheduleDay" value="#{doctorSchedulesController.selected.scheduleDay}">
+                      <f:selectItem itemLabel="SUNDAY" itemValue="SUNDAY"/>
+                      <f:selectItem itemLabel="MONDAY" itemValue="MONDAY"/>
+                      <f:selectItem itemLabel="TUESDAY" itemValue="TUESDAY"/>
+                      <f:selectItem itemLabel="WEDNESDAY" itemValue="WEDNESDAY"/>
+                      <f:selectItem itemLabel="THURSDAY" itemValue="THURSDAY"/>
+                      <f:selectItem itemLabel="FRIDAY" itemValue="FRIDAY"/>
+                      <f:selectItem itemLabel="SATURDAY" itemValue="SATURDAY"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel title="#{bundle.CreateDoctorSchedulesTitle_startTime}" value="#{bundle.CreateDoctorSchedulesLabel_startTime}" for="startTime" />
+                    <p:datePicker id="startTime" value="#{doctorSchedulesController.selected.startTime} "
+                                hourFormat="12" pattern="HH:mm"  timeOnly="true"
+                               />
+                    <p:outputLabel value="#{bundle.CreateDoctorSchedulesLabel_endTime}" for="endTime" title="#{bundle.CreateDoctorSchedulesTitle_endTime}"  />
+                    <p:datePicker id="endTime" value="#{doctorSchedulesController.selected.endTime} "
+                                hourFormat="12" pattern="HH:mm" timeOnly="true"
+                               />
+                    <p:outputLabel value="#{bundle.CreateDoctorSchedulesLabel_scheduleStatus}" for="scheduleStatus" title="#{bundle.CreateDoctorSchedulesTitle_scheduleStatus}" />
+                    <p:selectOneMenu id="scheduleStatus" value="#{doctorSchedulesController.selected.scheduleStatus}"  >
+                      <f:selectItem itemLabel="ACTIVE" itemValue="ACTIVE"/>
+                      <f:selectItem itemLabel="LEAVE" itemValue="LEAVE"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel value="#{bundle.CreateDoctorSchedulesLabel_doctorMaster}" for="doctorMaster" />      
+                    <p:selectOneMenu id="doctorMaster" value="#{doctorSchedulesController.selected.doctorMaster}" panelStyle="width:180px"  filter="true" filterMatchMode="startsWith"
+                                     title="#{bundle.CreateDoctorSchedulesTitle_doctorMaster}" required="true" requiredMessage="#{bundle.CreateDoctorSchedulesRequiredMessage_doctorMaster}">
+                        <f:selectItems value="#{doctorMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                       
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
+</html>

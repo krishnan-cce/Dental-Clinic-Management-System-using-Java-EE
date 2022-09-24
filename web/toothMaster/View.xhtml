@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewToothMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewToothMasterLabel_toothId}"/>
+                    <h:outputText value="#{toothMasterController.selected.toothId}" title="#{bundle.ViewToothMasterTitle_toothId}"/>
+                    <h:outputText value="#{bundle.ViewToothMasterLabel_toothName}"/>
+                    <h:outputText value="#{toothMasterController.selected.toothName}" title="#{bundle.ViewToothMasterTitle_toothName}"/>
+                    <h:outputText value="#{bundle.ViewToothMasterLabel_toothCode}"/>
+                    <h:outputText value="#{toothMasterController.selected.toothCode}" title="#{bundle.ViewToothMasterTitle_toothCode}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{toothMasterController.destroyAndView}" value="#{bundle.ViewToothMasterDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewToothMasterEditLink}"/>
+                <br />
+                <h:commandLink action="#{toothMasterController.prepareCreate}" value="#{bundle.ViewToothMasterCreateLink}" />
+                <br />
+                <h:commandLink action="#{toothMasterController.prepareList}" value="#{bundle.ViewToothMasterShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewToothMasterIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

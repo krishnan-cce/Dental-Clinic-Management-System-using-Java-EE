@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMedicineMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:fieldset legend="Add New Treatment">
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/medicineMaster/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/medicineMaster/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/medicineMaster/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/medicineMaster/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink  action="#{medicineMasterController.create}" >
+                <p:button styleClass="ui-button-success"   value="#{bundle.CreateMedicineMasterSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;                   
+               
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{medicineMasterController.prepareList}" value="#{bundle.CreateMedicineMasterShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+     
+    <p:tab title="Add New Medicine">                
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">                      
+                    <p:outputLabel value="#{bundle.CreateMedicineMasterLabel_medicineName}" for="medicineName" style="font-size: large"/> 
+                    <p:inputText id="medicineName" value="#{medicineMasterController.selected.medicineName}" title="#{bundle.CreateMedicineMasterTitle_medicineName}" />
+                    <p:outputLabel value="#{bundle.CreateMedicineMasterLabel_medicineCode}" for="medicineCode" style="font-size: large" />
+                    <p:inputText id="medicineCode" value="#{medicineMasterController.selected.medicineCode}" title="#{bundle.CreateMedicineMasterTitle_medicineCode}" />
+                </p:panelGrid>
+                </p:tab>
+            
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

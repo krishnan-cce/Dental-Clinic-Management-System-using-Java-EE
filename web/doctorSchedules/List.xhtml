@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDoctorSchedulesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form >
+                <p:fieldset legend="Doctor Schedules">
+<div class="card">
+    <p:tabMenu activeIndex="#{param.i}">
+        <p:menuitem value="Doctors" outcome="/doctorMaster/List" icon="pi pi-fw pi-book">
+            <f:param name="i" value="0"/>
+        </p:menuitem>        
+        <p:menuitem value="Schedules" outcome="/doctorSchedules/List" icon="pi pi-fw pi-book">
+            <f:param name="i" value="1"/>
+        </p:menuitem>
+    </p:tabMenu></div>                   
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/doctorSchedules/List"/>
+                <p:menuitem value="Create" outcome="/doctorSchedules/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/doctorSchedules/Edit"/>
+               
+                </p:breadCrumb>                
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <p:commandButton value="Export" icon="pi pi-save" actionListener="#{crudView.openNew}"  
+                    styleClass="ui-button-danger" style="margin-right: .5rem">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>                
+                <h:commandLink action="#{doctorSchedulesController.prepareCreate}">
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{crudView.openNew}"  
+                    styleClass="ui-button-success" style="margin-right: .5rem">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>
+                </h:commandLink>
+            </p:toolbarGroup>
+        </p:toolbar>             
+                    <p:dataTable value="#{doctorSchedulesController.items}"  size="small" 
+                                 var="item" paginator="true" rows="7" stripedRows="true" 
+                                  paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} ">
+
+                        <p:column headerText="#{bundle.ListDoctorSchedulesTitle_scheduleDate}" filterBy="#{item.scheduleDate}" filterMatchMode="startsWith">
+                <f:facet name="filter">
+                    <p:datePicker selectionMode="range" > <f:convertDateTime pattern="MM/dd/yyyy" /></p:datePicker>
+                </f:facet>                            
+                            <h:outputText value="#{item.scheduleDate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorSchedulesTitle_scheduleDay}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.scheduleDay}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorSchedulesTitle_startTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.startTime}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorSchedulesTitle_endTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endTime}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorSchedulesTitle_scheduleStatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.scheduleStatus}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorSchedulesTitle_doctorID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doctorID}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorSchedulesTitle_doctorMaster}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.doctorMaster}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandLink action="#{doctorSchedulesController.prepareEdit}" >
+                            <p:button icon="pi pi-eye" styleClass="rounded-button ui-button-warning"/>
+                            </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <h:commandLink action="#{doctorSchedulesController.destroy}">
+                            <p:button icon="pi pi-trash" styleClass="rounded-button ui-button-danger" />
+                            </h:commandLink>
+                        </p:column>                          
+                    </p:dataTable>
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

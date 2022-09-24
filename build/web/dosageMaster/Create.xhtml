@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDosageMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:fieldset legend="Add New DOsage">
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/dosageMaster/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/dosageMaster/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/dosageMaster/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/dosageMaster/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink  action="#{dosageMasterController.create}" >
+                <p:button styleClass="ui-button-success"  value="#{bundle.CreateDosageMasterSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;                 
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{dosageMasterController.prepareList}" value="#{bundle.CreateDosageMasterShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+     
+    <p:tab title="Add New Dosage">                
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;"> 
+                        <p:outputLabel value="#{bundle.CreateDosageMasterLabel_dosage}" for="dosage" />
+                        <p:inputText id="dosage" value="#{dosageMasterController.selected.dosage}" title="#{bundle.CreateDosageMasterTitle_dosage}" />
+                </p:panelGrid>
+                </p:tab>
+            
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

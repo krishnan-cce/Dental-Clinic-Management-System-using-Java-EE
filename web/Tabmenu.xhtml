@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+     
+        
+<div class="card">
+    <p:tabMenu activeIndex="#{param.i}">
+        <p:menuitem value="Treatments" outcome="/treatmentTrans/List" icon="pi pi-fw pi-book">
+            <f:param name="i" value="0"/>
+        </p:menuitem>
+        <p:menuitem value="Medicines" outcome="/medicineMaster/List" icon="pi pi-fw pi-shopping-bag">
+            <f:param name="i" value="1"/>
+        </p:menuitem>        
+        <p:menuitem value="Specializations" outcome="/specializations/List" icon="pi pi-fw pi-pencil">
+            <f:param name="i" value="2"/>
+        </p:menuitem>
+        <p:menuitem value="Durations" outcome="/durationMaster/List" icon="pi pi-fw pi-chart-pie">
+            <f:param name="i" value="3"/>
+        </p:menuitem>
+        <p:menuitem value="Dosage" outcome="/dosageMaster/List" icon="pi pi-fw pi-shield">
+            <f:param name="i" value="4"/>
+       </p:menuitem>
+        <p:menuitem value="Schedules" outcome="/scheduleTiming/List" icon="pi pi-fw pi-compass">
+            <f:param name="i" value="5"/>
+        </p:menuitem>
+        <p:menuitem value="Districts" outcome="/districtMaster/List" icon="pi pi-fw pi-th-large">
+            <f:param name="i" value="6"/>
+        </p:menuitem>
+        <p:menuitem value="State" outcome="/stateMaster/List" icon="pi pi-fw pi-globe">
+            <f:param name="i" value="7"/>
+        </p:menuitem>  
+      
+    </p:tabMenu>
+</div>
+                
+                
+        
+        
+        
+    </h:head>
+    
+
+</html>

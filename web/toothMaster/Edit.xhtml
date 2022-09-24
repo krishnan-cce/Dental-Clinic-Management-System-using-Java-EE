@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditToothMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                 
+                    <h:outputLabel value="#{bundle.EditToothMasterLabel_toothName}" for="toothName" />
+                    <h:inputText id="toothName" value="#{toothMasterController.selected.toothName}" title="#{bundle.EditToothMasterTitle_toothName}" />
+                    <h:outputLabel value="#{bundle.EditToothMasterLabel_toothCode}" for="toothCode" />
+                    <h:inputText id="toothCode" value="#{toothMasterController.selected.toothCode}" title="#{bundle.EditToothMasterTitle_toothCode}" />
+                </h:panelGrid>
+                <h:commandLink action="#{toothMasterController.update}" value="#{bundle.EditToothMasterSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditToothMasterViewLink}"/>
+                <br />
+                <h:commandLink action="#{toothMasterController.prepareList}" value="#{bundle.EditToothMasterShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditToothMasterIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

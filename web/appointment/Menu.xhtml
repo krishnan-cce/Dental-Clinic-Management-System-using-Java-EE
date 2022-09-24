@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+     
+        
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/appointment/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/appointment/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/appointment/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/appointment/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+
+                <h:commandLink  action="#{appointmentController.create}" >
+                <p:button styleClass="ui-button-success"  outcome="/districtMaster/List" value="#{bundle.CreateAppointmentSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;                
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{appointmentController.prepareList}" value="#{bundle.CreateDoctorMasterShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>            
+        </p:toolbar>
+                
+                
+        
+        
+        
+    </h:head>
+    
+
+</html>

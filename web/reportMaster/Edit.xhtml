@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditReportMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+      
+        <h:form>
+        <p:breadCrumb>
+            <p:menuitem value="Home" outcome="/index"/>
+            <p:menuitem value="List" outcome="/reportMaster/List"/>
+            <p:menuitem value="Create" disabled="true" outcome="/reportMaster/Create"/>
+            <p:menuitem value="Edit" disabled="true" outcome="/reportMaster/Edit"/>
+            <p:menuitem value="View" outcome="/reportMaster/View"/>
+            
+        </p:breadCrumb>
+        </h:form>
+    <h:form>
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_reportDate}" for="reportDate" />
+                    <p:datePicker id="reportDate" value="#{reportMasterController.selected.reportDate}" title="#{bundle.EditReportMasterTitle_reportDate}" pattern="dd-MMM-yyyy">
+                    </p:datePicker>
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_consultationFee}" for="consultationFee" />
+                    <p:inputText id="consultationFee" value="#{reportMasterController.selected.consultationFee}" title="#{bundle.EditReportMasterTitle_consultationFee}" />
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_notes}" for="notes" />
+                    <p:inputText id="notes" value="#{reportMasterController.selected.notes}" title="#{bundle.EditReportMasterTitle_notes}" />
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_dosageId}" for="dosageId" />
+                    <p:selectOneMenu id="dosageId" value="#{reportMasterController.selected.dosageId}" title="#{bundle.EditReportMasterTitle_dosageId}" >
+                        <f:selectItems value="#{dosageMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_durationId}" for="durationId" />
+                    <p:selectOneMenu id="durationId" value="#{reportMasterController.selected.durationId}" title="#{bundle.EditReportMasterTitle_durationId}" >
+                        <f:selectItems value="#{durationMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_medicineId}" for="medicineId" />
+                    <p:selectOneMenu id="medicineId" value="#{reportMasterController.selected.medicineId}" title="#{bundle.EditReportMasterTitle_medicineId}" >
+                        <f:selectItems value="#{medicineMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.EditReportMasterLabel_patientId}" for="patientId" />
+                    <p:selectOneMenu id="patientId" value="#{reportMasterController.selected.patientId}" title="#{bundle.EditReportMasterTitle_patientId}" >
+                        <f:selectItems value="#{patientMasterController.itemsAvailableSelectOne}"/>
+                    </p:selectOneMenu>
+    </p:panelGrid>
+     
+                <h:commandLink  action="#{reportMasterController.update}" >
+                <p:button styleClass="ui-button-success" value="#{bundle.EditReportMasterSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;  
+                <h:link outcome="View">
+                <p:button styleClass="ui-button-primary"  value="#{bundle.EditReportMasterViewLink}" />
+                </h:link>
+                
+            </h:form>
+      
+        </ui:define>
+    </ui:composition>
+
+</html>

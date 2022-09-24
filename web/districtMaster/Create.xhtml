@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDistrictMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                
+                <p:fieldset legend="Add New District">
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/districtMaster/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/districtMaster/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/districtMaster/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/districtMaster/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink  action="#{districtMasterController.create}" >
+                <p:button styleClass="ui-button-success"  outcome="/districtMaster/List" value="#{bundle.CreateDistrictMasterSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{districtMasterController.prepareList}" value="#{bundle.CreateDistrictMasterShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+     
+    <p:tab title="Add New District">                
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;"> 
+                    <h:outputLabel value="#{bundle.CreateDistrictMasterLabel_districtNo}" for="districtNo" />
+                    <h:inputText id="districtNo" value="#{districtMasterController.selected.districtNo}" title="#{bundle.CreateDistrictMasterTitle_districtNo}" />
+                    <h:outputLabel value="#{bundle.CreateDistrictMasterLabel_district}" for="district" />
+                    <h:inputText id="district" value="#{districtMasterController.selected.district}" title="#{bundle.CreateDistrictMasterTitle_district}" />
+                </p:panelGrid>
+                </p:tab>
+            
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

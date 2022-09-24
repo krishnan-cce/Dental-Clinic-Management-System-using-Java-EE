@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTreatmentTransTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:fieldset legend="Add New Treatment">
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/specializations/List"/>
+                <p:menuitem value="Create" disabled="true" outcome="/specializations/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/specializations/Edit"/>
+                <p:menuitem value="View" disabled="true" outcome="/specializations/View"/>    
+                </p:breadCrumb>   
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <h:commandLink  action="#{specializationsController.create}" >
+                <p:button styleClass="ui-button-success"  value="#{bundle.CreateSpecializationsSaveLink}" />
+                </h:commandLink>
+                &nbsp;&nbsp;                 
+                 <p:commandButton icon="pi pi-folder-open" style="margin-right: .5rem" styleClass="ui-button-primary" action="#{specializationsController.prepareList}" value="#{bundle.CreateSpecializationsShowAllLink}" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+     
+    <p:tab title="Add New Specializaton">                
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+                    <p:outputLabel value="#{bundle.CreateSpecializationsLabel_specializationsCode}" for="specializationsCode" />
+                    <p:inputText id="specializationsCode" value="#{specializationsController.selected.specializationsCode}" title="#{bundle.CreateSpecializationsTitle_specializationsCode}" />
+                    <p:outputLabel value="#{bundle.CreateSpecializationsLabel_specializations}" for="specializations" />
+                    <p:inputText id="specializations" value="#{specializationsController.selected.specializations}" title="#{bundle.CreateSpecializationsTitle_specializations}" />
+                </p:panelGrid>
+                </p:tab>
+            
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition> 
+</html>

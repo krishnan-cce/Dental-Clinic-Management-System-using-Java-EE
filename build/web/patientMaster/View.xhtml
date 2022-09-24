@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPatientMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+     
+        <h:form>
+        <p:breadCrumb>
+            <p:menuitem value="Home" outcome="/index"/>
+            <p:menuitem value="List" outcome="/patientMaster/List"/>
+            <p:menuitem value="Create" outcome="/patientMaster/Create"/>
+            <p:menuitem value="Edit" outcome="/patientMaster/Edit"/>
+            <p:menuitem value="View" outcome="/patientMaster/View"/>
+            
+        </p:breadCrumb>
+
+               
+    <p:panelGrid columns="4"
+                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent;">
+              
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_patientId}"/>
+                    <h:outputText value="#{patientMasterController.selected.patientId}" title="#{bundle.ViewPatientMasterTitle_patientId}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_name}"/>
+                    <h:outputText value="#{patientMasterController.selected.name}" title="#{bundle.ViewPatientMasterTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_gender}"/>
+                    <h:outputText value="#{patientMasterController.selected.gender}" title="#{bundle.ViewPatientMasterTitle_gender}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_occupation}"/>
+                    <h:outputText value="#{patientMasterController.selected.occupation}" title="#{bundle.ViewPatientMasterTitle_occupation}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_address}"/>
+                    <h:outputText value="#{patientMasterController.selected.address}" title="#{bundle.ViewPatientMasterTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_pinCode}"/>
+                    <h:outputText value="#{patientMasterController.selected.pinCode}" title="#{bundle.ViewPatientMasterTitle_pinCode}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_email}"/>
+                    <h:outputText value="#{patientMasterController.selected.email}" title="#{bundle.ViewPatientMasterTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_mobile}"/>
+                    <h:outputText value="#{patientMasterController.selected.mobile}" title="#{bundle.ViewPatientMasterTitle_mobile}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_telephone}"/>
+                    <h:outputText value="#{patientMasterController.selected.telephone}" title="#{bundle.ViewPatientMasterTitle_telephone}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_birthDate}"/>
+                    <h:outputText value="#{patientMasterController.selected.birthDate}" title="#{bundle.ViewPatientMasterTitle_birthDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_smoking}"/>
+                    <h:outputText value="#{patientMasterController.selected.smoking}" title="#{bundle.ViewPatientMasterTitle_smoking}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_chronicDiseases}"/>
+                    <h:outputText value="#{patientMasterController.selected.chronicDiseases}" title="#{bundle.ViewPatientMasterTitle_chronicDiseases}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_allergies}"/>
+                    <h:outputText value="#{patientMasterController.selected.allergies}" title="#{bundle.ViewPatientMasterTitle_allergies}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_districtId}"/>
+                    <h:outputText value="#{patientMasterController.selected.districtId}" title="#{bundle.ViewPatientMasterTitle_districtId}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_doctorId}"/>
+                    <h:outputText value="#{patientMasterController.selected.doctorId}" title="#{bundle.ViewPatientMasterTitle_doctorId}"/>
+                    <h:outputText value="#{bundle.ViewPatientMasterLabel_stateId}"/>
+                    <h:outputText value="#{patientMasterController.selected.stateId}" title="#{bundle.ViewPatientMasterTitle_stateId}"/>
+    </p:panelGrid>
+                <h:commandLink  action="#{patientMasterController.prepareList}" >
+                <p:button styleClass="ui-button-success" value="#{bundle.ViewPatientMasterShowAllLink}" />
+                </h:commandLink>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

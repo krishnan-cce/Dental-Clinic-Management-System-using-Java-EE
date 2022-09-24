@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDoctorMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <p:fieldset legend="Doctors">
+<div class="card">
+    <p:tabMenu activeIndex="#{param.i}">
+        <p:menuitem value="Doctors" outcome="/doctorMaster/List" icon="pi pi-fw pi-book">
+            <f:param name="i" value="0"/>
+        </p:menuitem>        
+        <p:menuitem value="Schedules" outcome="/doctorSchedules/List" icon="pi pi-fw pi-book">
+            <f:param name="i" value="1"/>
+        </p:menuitem>
+    </p:tabMenu></div>
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:breadCrumb style="margin-right: .5rem">
+                <p:menuitem value="Home" outcome="/index"/>
+                <p:menuitem value="List" outcome="/doctorMaster/List"/>
+                <p:menuitem value="Create" outcome="/doctorMaster/Create"/>
+                <p:menuitem value="Edit" disabled="true" outcome="/doctorMaster/Edit"/>
+               
+                </p:breadCrumb>                
+            </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <p:commandButton value="Export" icon="pi pi-save" actionListener="#{crudView.openNew}"  
+                    styleClass="ui-button-danger" style="margin-right: .5rem">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>                
+                <h:commandLink action="#{doctorMasterController.prepareCreate}">
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{crudView.openNew}"  
+                    styleClass="ui-button-success" style="margin-right: .5rem">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>
+                </h:commandLink>
+            </p:toolbarGroup>
+        </p:toolbar>                   
+                      
+                    <p:dataTable value="#{doctorMasterController.items}" var="item" paginator="true" rows="7"  size="small" stripedRows="true" 
+                                  paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} ">
+               
+                        <p:column filterBy="#{item.name}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorMasterTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                       
+                        <p:column filterBy="#{item.specializationId.specializations}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorMasterTitle_specilizations}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.specializationId.specializations}"/>
+                        </p:column>                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorMasterTitle_qualification}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.qualification}"/>
+                        </p:column>                        
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorMasterTitle_mobile}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mobile}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.timings}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDoctorMasterTitle_timings}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.timings}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandLink action="#{doctorMasterController.prepareEdit}" >
+                            <p:button icon="pi pi-eye" styleClass="rounded-button ui-button-warning"/>
+                            </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <h:commandLink action="#{doctorMasterController.destroy}">
+                            <p:button icon="pi pi-trash" styleClass="rounded-button ui-button-danger" />
+                            </h:commandLink>
+                        </p:column>                               
+                    </p:dataTable>
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStateMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <p:fieldset legend="State">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <ui:decorate template="/Tabmenu.xhtml" />
+          
+        <p:toolbar>
+            <p:toolbarGroup>
+                <h:commandLink action="#{stateMasterController.prepareCreate}">
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{crudView.openNew}"  
+                    styleClass="ui-button-success" style="margin-right: .5rem">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>
+                </h:commandLink>
+            </p:toolbarGroup>
+        </p:toolbar>                   
+                 
+                    <p:dataTable value="#{stateMasterController.items}" var="item" paginator="true" rows="7"  size="small" stripedRows="true"
+                                  paginatorPosition="bottom" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} ">
+                        <p:column filterBy="#{item.stateId}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStateMasterTitle_stateId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stateId}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.stateNo}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStateMasterTitle_stateNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stateNo}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.state}" filterMatchMode="startsWith">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStateMasterTitle_state}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.state}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandLink action="#{stateMasterController.prepareEdit}" >
+                            <p:button icon="pi pi-eye" styleClass="rounded-button ui-button-warning"/>
+                            </h:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <h:commandLink action="#{stateMasterController.destroy}">
+                            <p:button icon="pi pi-times" styleClass="rounded-button ui-button-danger" />
+                            </h:commandLink>
+                        </p:column>                          
+                    </p:dataTable>
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
