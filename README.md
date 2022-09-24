@@ -5,13 +5,13 @@
 
 Features :- Following crud operations available
 
-Patient
-Doctor
-Treatments
-CaseSheet
-Medicines
-Appointments
+Patient,
+Doctor,
+Treatments,
+CaseSheet,
+Medicines,
+Appointments,
 
-Follows with Jasper Reports
+Follows with Jasper Reports,
 
 Used EJB,JPA,GlassFish Server,Primefaces,Jasper reports
