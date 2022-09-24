@@ -3,7 +3,7 @@
 
 
 
-Features :- Folloing crud operations available
+Features :- Following crud operations available
 
 Patient
 Doctor
